@@ -1,4 +1,4 @@
-TreeSplitWord 一个tire树结构的分词.
+TreeSplitWord 一个tire树结构的分词
 ==================
 
 一个trie树数据结构的分词

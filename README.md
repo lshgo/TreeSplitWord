@@ -9,10 +9,10 @@ TreeSplitWord 一个tire树结构的分词
 这是个例子欢迎大家使用.我用了好久了应该没有bug的
 
 ...
-/**
-*词典的构造.一行一个词后面是参数.可以从文件读取.可以是read流.
-*/
-String dic = "中国\t1\tzg\n人名\t2\n中国人民\t4\n人民\t3\n孙健\t5\nCSDN\t6\njava\t7\njava学习\t10\n";
+		/**
+		*词典的构造.一行一个词后面是参数.可以从文件读取.可以是read流.
+		*/
+		String dic = "中国\t1\tzg\n人名\t2\n中国人民\t4\n人民\t3\n孙健\t5\nCSDN\t6\njava\t7\njava学习\t10\n";
 		Forest forest = Library.makeForest(new BufferedReader(new StringReader(dic)));
 
 		/**

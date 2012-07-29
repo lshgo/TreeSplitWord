@@ -8,7 +8,7 @@ TreeSplitWord 一个tire树结构的分词
 
 这是个例子欢迎大家使用.我用了好久了应该没有bug的
 
-...
+<pre><code>
 		/**
 		 * 词典的构造.一行一个词后面是参数.可以从文件读取.可以是read流.
 		 */
@@ -29,4 +29,4 @@ TreeSplitWord 一个tire树结构的分词
 		String temp = null;
 		while ((temp = udg.getFrontWords()) != null)
 			System.out.println(temp + "\t\t" + udg.getParam(1) + "\t\t" + udg.getParam(2));
-...
+<code></pre>

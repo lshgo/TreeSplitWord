@@ -2,7 +2,6 @@ package love.cq.domain;
 
 import love.cq.splitWord.GetWord;
 
-
 public class Forest implements WoodInterface {
 	WoodInterface[] chars = new WoodInterface[65536];
 
@@ -11,25 +10,16 @@ public class Forest implements WoodInterface {
 		if (temp == null)
 			this.chars[branch.getC()] = branch;
 		else {
-			switch (temp.getStatus()) {
+			switch (branch.getStatus()) {
 			case 1:
-				if (branch.getStatus() == 2) {
+				if (branch.getStatus() == 3) {
 					temp.setStatus(2);
 				}
-				if (branch.getStatus() != 3)
-					break;
-				temp.setStatus(2);
-
 				break;
-			case 2:
-				branch.setStatus(2);
 			case 3:
-				if (branch.getStatus() == 2) {
+				if (temp.getStatus() == 1) {
 					temp.setStatus(2);
 				}
-				if (branch.getStatus() != 1)
-					break;
-				temp.setStatus(2);
 			}
 		}
 
@@ -89,13 +79,14 @@ public class Forest implements WoodInterface {
 
 	public void setParam(String[] param) {
 	}
-	
+
 	/**
 	 * 得到一个分词对象
+	 * 
 	 * @param content
 	 * @return
 	 */
-	public GetWord getWord(String content){
-		return new GetWord(this, content) ;
+	public GetWord getWord(String content) {
+		return new GetWord(this, content);
 	}
 }

@@ -14,8 +14,6 @@ public class Branch implements WoodInterface {
 	private byte status = 1;
 	// 索引
 	private short index = -1;
-	// 词性
-	private int nature = 0;
 	// 单独查找出来的对象
 	WoodInterface branch = null;
 	// 词典后的参数
@@ -28,25 +26,15 @@ public class Branch implements WoodInterface {
 				this.branch.setStatus(1);
 				break;
 			case 1:
-				if (this.branch.getStatus() == 2) {
+				if (this.branch.getStatus() == 3){
 					this.branch.setStatus(2);
 				}
-				if (this.branch.getStatus() != 3)
-					break;
-				this.branch.setStatus(2);
-
 				break;
-			case 2:
-				this.branch.setStatus(2);
 			case 3:
-				if (this.branch.getStatus() == 2) {
+				if(this.branch.getStatus()!=3){
 					this.branch.setStatus(2);
 				}
-				if (this.branch.getStatus() != 1)
-					break;
-				this.branch.setStatus(2);
 			}
-
 			return this.branch;
 		}
 		this.index = (short) (this.index + 1);

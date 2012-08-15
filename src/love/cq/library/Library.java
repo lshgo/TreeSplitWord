@@ -9,8 +9,6 @@ import love.cq.domain.WoodInterface;
 import love.cq.util.IOUtil;
 
 public class Library {
-	private static final String charEncoding = "UTF-8";
-
 	public static Forest makeForest(String path) throws Exception {
 		return makeForest(new FileInputStream(path));
 	}
@@ -48,37 +46,20 @@ public class Library {
 		String[] param = temp.split("\t");
 
 		temp = param[0];
-
-		boolean hasNext = true;
-
-		boolean isWords = true;
+		
+		String[] resultParams = null ;
 
 		WoodInterface branch = forest;
 		char[] chars = temp.toCharArray();
 		for (int i = 0; i < chars.length; i++) {
 			if (chars.length == i + 1) {
-				isWords = true;
-				hasNext = false;
+				resultParams = new String[param.length-1] ;
+				for (int j = 1; j < param.length; j++) {
+					resultParams[j-1] = param[j] ;
+				}
+				branch.add(new Branch(chars[i], 3, resultParams));
 			} else {
-				isWords = false;
-				hasNext = true;
-			}
-			int status = 1;
-			if ((isWords) && (hasNext)) {
-				status = 2;
-			}
-
-			if ((!isWords) && (hasNext)) {
-				status = 1;
-			}
-
-			if ((isWords) && (!hasNext)) {
-				status = 3;
-			}
-			if ((status == 2) || (status == 3))
-				branch.add(new Branch(chars[i], status, param));
-			else {
-				branch.add(new Branch(chars[i], status, null));
+				branch.add(new Branch(chars[i], 1, null));
 			}
 			branch = branch.get(chars[i]);
 		}
@@ -91,37 +72,12 @@ public class Library {
 	 * @param temp
 	 */
 	public static void removeWord(Forest forest, String word) {
-
-		boolean hasNext = true;
-
-		boolean isWords = true;
-
 		WoodInterface branch = forest;
 		char[] chars = word.toCharArray();
+		
 		for (int i = 0; i < chars.length; i++) {
 			if (chars.length == i + 1) {
-				isWords = true;
-				hasNext = false;
-			} else {
-				isWords = false;
-				hasNext = true;
-			}
-			int status = 1;
-			if ((isWords) && (hasNext)) {
-				status = 2;
-			}
-
-			if ((!isWords) && (hasNext)) {
-				status = 1;
-			}
-
-			if ((isWords) && (!hasNext)) {
-				status = 3;
-			}
-			if ((status == 2) || (status == 3))
 				branch.add(new Branch(chars[i], -1, null));
-			else {
-				branch.add(new Branch(chars[i], status, null));
 			}
 			branch = branch.get(chars[i]);
 		}

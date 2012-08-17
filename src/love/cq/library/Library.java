@@ -42,7 +42,6 @@ public class Library {
 	 * @param temp
 	 */
 	public static void insertWord(Forest forest, String temp) {
-
 		String[] param = temp.split("\t");
 
 		temp = param[0];
@@ -76,6 +75,7 @@ public class Library {
 		char[] chars = word.toCharArray();
 		
 		for (int i = 0; i < chars.length; i++) {
+			if(branch==null) return ;
 			if (chars.length == i + 1) {
 				branch.add(new Branch(chars[i], -1, null));
 			}

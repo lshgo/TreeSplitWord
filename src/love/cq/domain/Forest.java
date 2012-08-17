@@ -19,6 +19,7 @@ public class Forest implements WoodInterface {
 			case 3:
 				if (temp.getStatus() == 1) {
 					temp.setStatus(2);
+					temp.setParam(branch.getParams()) ;
 				}
 			}
 		}

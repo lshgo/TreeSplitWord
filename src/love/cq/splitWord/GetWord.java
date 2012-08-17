@@ -175,7 +175,7 @@ public class GetWord {
 		/**
 		 * 词典的构造.一行一个词后面是参数.可以从文件读取.可以是read流.
 		 */
-		String dic = "java学习\t1\n中国\t1\tzg\n人名\t2\n中国人民\t4\n人民\t3\n孙健\t5\nCSDN\t6\njava\t7\njava学习\t10\n";
+		String dic = "java学习\t10\nc#\t100\nc\t100";
 		Forest forest = Library.makeForest(new BufferedReader(new StringReader(dic)));
 
 		/**
@@ -186,11 +186,11 @@ public class GetWord {
 		 * 增加一个新词
 		 */
 		Library.insertWord(forest, "中国人");
-		String content = "你好windows,phone中java学习国人名识别是中国人民的一个骄傲.孙健人民在CSDN中学到了很多最早iteye是java学习笔记叫javaeye但是java123只是一部分";
-		GetWord udg = forest.getWord(content);
+		String content = "java学习 是一个很好学的类似C#和c的相互调用";
+		GetWord udg = forest.getWord(content.toLowerCase());
 
 		String temp = null;
-		while ((temp = udg.getAllWords()) != null)
-			System.out.println(temp + "\t\t" + udg.getParam(1) + "\t\t" + udg.getParam(2));
+		while ((temp = udg.getFrontWords()) != null)
+			System.out.println(temp + "\t\t" + udg.getParam(0) + "\t\t" + udg.getParam(2));
 	}
 }

@@ -34,6 +34,7 @@ public class Branch implements WoodInterface {
 				if(this.branch.getStatus()!=3){
 					this.branch.setStatus(2);
 				}
+				this.branch.setParam(branch.getParams()) ;
 			}
 			return this.branch;
 		}

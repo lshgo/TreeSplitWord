@@ -2,6 +2,7 @@ package love.cq.splitWord;
 
 import java.io.BufferedReader;
 import java.io.StringReader;
+import java.util.Arrays;
 
 import love.cq.domain.Forest;
 import love.cq.domain.WoodInterface;
@@ -23,7 +24,7 @@ public class GetWord {
 	boolean isBack = false;
 
 	public GetWord(Forest forest, String content) {
-		this.chars = content.toCharArray();
+		this.chars = Arrays.copyOf(content.toCharArray(), content.length()+1);
 		this.forest = forest;
 		this.branch = forest;
 	}
@@ -175,7 +176,7 @@ public class GetWord {
 		/**
 		 * 词典的构造.一行一个词后面是参数.可以从文件读取.可以是read流.
 		 */
-		String dic = "java学习\t10\nc#\t100\nc\t100";
+		String dic = "java学习\t10\nc\t100\nC++\t10\nc++\t5\nc#\t100".toLowerCase();
 		Forest forest = Library.makeForest(new BufferedReader(new StringReader(dic)));
 
 		/**
@@ -186,7 +187,7 @@ public class GetWord {
 		 * 增加一个新词
 		 */
 		Library.insertWord(forest, "中国人");
-		String content = "java学习 是一个很好学的类似C#和c的相互调用";
+		String content = "c c++ c++ c++ ".toLowerCase();
 		GetWord udg = forest.getWord(content.toLowerCase());
 
 		String temp = null;

@@ -12,15 +12,15 @@ public class Forest implements WoodInterface {
 		else {
 			switch (branch.getStatus()) {
 			case 1:
-				if (branch.getStatus() == 3) {
+				if (temp.getStatus() == 3) {
 					temp.setStatus(2);
 				}
 				break;
 			case 3:
 				if (temp.getStatus() == 1) {
 					temp.setStatus(2);
-					temp.setParam(branch.getParams()) ;
 				}
+				temp.setParam(branch.getParams()) ;
 			}
 		}
 

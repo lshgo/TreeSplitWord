@@ -1,9 +1,11 @@
 package love.cq.domain;
 
+import love.cq.library.Library;
 import love.cq.splitWord.GetWord;
 
 public class Forest implements WoodInterface {
 	WoodInterface[] chars = new WoodInterface[65536];
+	
 
 	public WoodInterface add(WoodInterface branch) {
 		WoodInterface temp = this.chars[branch.getC()];

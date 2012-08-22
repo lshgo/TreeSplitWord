@@ -9,6 +9,8 @@ import love.cq.domain.WoodInterface;
 import love.cq.library.Library;
 
 public class GetWord {
+	private static final String EMPTYSTRING = "" ;
+	
 	private Forest forest;
 	private char[] chars;
 	private String str;
@@ -24,12 +26,28 @@ public class GetWord {
 	boolean isBack = false;
 
 	public GetWord(Forest forest, String content) {
-		this.chars = Arrays.copyOf(content.toCharArray(), content.length()+1);
+		this.chars = Arrays.copyOf(content.toCharArray(), content.length() + 1);
 		this.forest = forest;
 		this.branch = forest;
 	}
 
 	public String getAllWords() {
+		String temp = this.allWords();
+		while (EMPTYSTRING.equals(temp)) {
+			temp = this.allWords();
+		}
+		return temp;
+	}
+
+	public String getFrontWords() {
+		String temp = this.frontWords();
+		while (EMPTYSTRING.equals(temp)) {
+			temp = this.frontWords();
+		}
+		return temp;
+	}
+
+	private String allWords() {
 		if ((!this.isBack) || (this.i == this.chars.length - 1)) {
 			this.i = (this.root - 1);
 		}
@@ -62,7 +80,7 @@ public class GetWord {
 		return null;
 	}
 
-	public String getFrontWords() {
+	public String frontWords() {
 		for (; this.i < this.chars.length; this.i = (this.i + 1)) {
 			this.branch = this.branch.get(this.chars[this.i]);
 			if (this.branch == null) {
@@ -71,12 +89,12 @@ public class GetWord {
 					this.str = new String(this.chars, this.root, this.tempOffe);
 
 					if ((this.root > 0) && (isE(this.chars[(this.root - 1)])) && (isE(this.str.charAt(0)))) {
-						this.str = "";
+						this.str = EMPTYSTRING;
 					}
 
 					if ((this.str.length() != 0) && (this.root + this.tempOffe < this.chars.length) && (isE(this.str.charAt(this.str.length() - 1)))
 							&& (isE(this.chars[(this.root + this.tempOffe)]))) {
-						this.str = "";
+						this.str = EMPTYSTRING;
 					}
 					if (this.str.length() == 0) {
 						this.root += 1;
@@ -88,8 +106,8 @@ public class GetWord {
 					}
 					this.isBack = false;
 
-					if ("".equals(this.str)) {
-						return getFrontWords();
+					if (EMPTYSTRING.equals(this.str)) {
+						return EMPTYSTRING;
 					}
 					return this.str;
 				}
@@ -108,12 +126,12 @@ public class GetWord {
 					String temp = this.str;
 
 					if ((this.root > 0) && (isE(this.chars[(this.root - 1)])) && (isE(this.str.charAt(0)))) {
-						this.str = "";
+						this.str = EMPTYSTRING;
 					}
 
 					if ((this.str.length() != 0) && (this.i + 1 < this.chars.length) && (isE(this.str.charAt(this.str.length() - 1)))
 							&& (isE(this.chars[(this.i + 1)]))) {
-						this.str = "";
+						this.str = EMPTYSTRING;
 					}
 					this.param = this.branch.getParams();
 					this.branch = this.forest;
@@ -124,8 +142,8 @@ public class GetWord {
 					} else {
 						this.i = (this.root + 1);
 					}
-					if ("".equals(this.str)) {
-						return getFrontWords();
+					if (EMPTYSTRING.equals(this.str)) {
+						return EMPTYSTRING;
 					}
 					return this.str;
 				}

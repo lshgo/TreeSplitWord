@@ -80,7 +80,7 @@ public class GetWord {
 		return null;
 	}
 
-	public String frontWords() {
+	private String frontWords() {
 		for (; this.i < this.chars.length; this.i = (this.i + 1)) {
 			this.branch = this.branch.get(this.chars[this.i]);
 			if (this.branch == null) {

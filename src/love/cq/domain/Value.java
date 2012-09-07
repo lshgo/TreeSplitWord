@@ -6,7 +6,7 @@ public class Value {
 	private String keyword;
 	private String[] paramers = new String[0];
 
-	public Value(String keyword, String[] paramers) {
+	public Value(String keyword, String... paramers) {
 		this.keyword = keyword;
 		if (paramers != null) {
 			this.paramers = paramers;

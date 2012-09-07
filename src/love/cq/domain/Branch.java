@@ -8,7 +8,7 @@ public class Branch implements WoodInterface {
 	/**
 	 * status 此字的状态1，继续 2，是个词语但是还可以继续 ,3确定 nature 词语性质
 	 */
-	WoodInterface[] branches = new WoodInterface[0];
+	WoodInterface[] branches = null;
 	private char c;
 	// 状态
 	private byte status = 1;
@@ -20,21 +20,24 @@ public class Branch implements WoodInterface {
 	private String[] param = null;
 
 	public WoodInterface add(WoodInterface branch) {
+		if (branches == null) {
+			branches = new WoodInterface[0];
+		}
 		if ((this.branch = get(branch.getC())) != null) {
 			switch (branch.getStatus()) {
 			case -1:
 				this.branch.setStatus(1);
 				break;
 			case 1:
-				if (this.branch.getStatus() == 3){
+				if (this.branch.getStatus() == 3) {
 					this.branch.setStatus(2);
 				}
 				break;
 			case 3:
-				if(this.branch.getStatus()!=3){
+				if (this.branch.getStatus() != 3) {
 					this.branch.setStatus(2);
 				}
-				this.branch.setParam(branch.getParams()) ;
+				this.branch.setParam(branch.getParams());
 			}
 			return this.branch;
 		}
@@ -54,6 +57,9 @@ public class Branch implements WoodInterface {
 	}
 
 	public WoodInterface get(char c) {
+		if(this.branches==null){
+			return null ;
+		}
 		int i = AnsjArrays.binarySearch(this.branches, c);
 		if (i > -1) {
 			return this.branches[i];
@@ -62,6 +68,9 @@ public class Branch implements WoodInterface {
 	}
 
 	public boolean contains(char c) {
+		if(this.branches==null){
+			return false ;
+		}
 		return AnsjArrays.binarySearch(this.branches, c) > -1;
 	}
 
